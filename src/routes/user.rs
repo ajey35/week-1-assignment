@@ -4,7 +4,7 @@ use actix_web::{web::{Data, Json}, HttpResponse, Responder};
 use jsonwebtoken::{encode, EncodingKey, Header};
 use serde::{Serialize, Deserialize};
 use actix_web::{post};
-
+use todo_macro::todo_app;
 use crate::db::{self, UserRole};
 
 #[derive(Serialize, Deserialize)]
@@ -12,7 +12,8 @@ struct GetUsersResponse {
     users: Vec<db::User>
 }
 
-#[derive(Serialize, Deserialize)]
+
+#[todo_app]
 struct CreateUserResponse {
     id: String
 }

@@ -6,7 +6,8 @@ use serde::{Serialize, Deserialize};
 use crate::middleware::UserId;
 use crate::db::Db;
 
-#[derive(Serialize, Deserialize)]
+use todo_macro::todo_app;
+#[todo_app]
 struct CreateTodoResponse {
     message: String
 }
@@ -16,7 +17,7 @@ struct CreateTodoRequest {
     pub text: String
 }
 
-#[derive(Serialize, Deserialize)]
+#[todo_app]
 struct GetTodosResponse {
     todos: Vec<String>
 }

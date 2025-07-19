@@ -15,12 +15,21 @@ impl FromRequest for UserId {
         match req.headers().get("Authorization") {
             Some(token) => {
                 let token = token.to_str().unwrap();
-                let user_id = validate_token(token).unwrap();
-                ready(Ok(UserId(user_id)))
+    
+                println!("token : {}", token);
+    
+                // Strip the Bearer prefix if in case passing through postman 
+                let token = token.strip_prefix("Bearer ").unwrap_or(token);
+    
+                match validate_token(token) {
+                    Ok(user_id) => ready(Ok(UserId(user_id))),
+                    Err(_) => ready(Err(ErrorUnauthorized("Invalid token"))),
+                }
             }
-            None => ready(Err(Error::from(ErrorUnauthorized("Authorization header not found")))),
+            None => ready(Err(ErrorUnauthorized("Authorization header not found"))),
         }
     }
+    
 }
 
 fn validate_token(token: &str) -> Result<String, jsonwebtoken::errors::Error> {

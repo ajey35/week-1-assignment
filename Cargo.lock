@@ -232,6 +232,7 @@ dependencies = [
  "jsonwebtoken",
  "serde",
  "serde_json",
+ "todo_macro",
 ]
 
 [[package]]
@@ -1299,6 +1300,14 @@ checksum = "5d4f6d1145dcb577acf783d4e601bc1d76a13337bb54e6233add580b07344c8b"
 dependencies = [
  "displaydoc",
  "zerovec",
+]
+
+[[package]]
+name = "todo_macro"
+version = "0.1.0"
+dependencies = [
+ "quote",
+ "syn",
 ]
 
 [[package]]

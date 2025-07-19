@@ -1,7 +1,5 @@
 use std::sync::{Arc, Mutex};
-
 use actix_web::{web, App, HttpServer};
-
 use crate::routes::{todo::{create_todo, get_todos}, user::{sign_in, sign_up}};
 pub mod routes;
 pub mod db;
